@@ -1,0 +1,40 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<title>Corona Virus Date Wise Report</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<link rel="stylesheet" type="text/css" media="all"
+      href="../../css/gtvg.css" th:href="@{/css/gtvg.css}"/>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+<div class="alert alert-info" role="alert">
+    <p th:text="'Displaying the records for ' + ${dayWiseModel.day}+ ' (yyyy-mm-dd)'"/>
+</div>
+<form action="#" th:action="@{/}" method="get">
+    <p><input type="submit" class="btn btn-warning" value="Click here to go to Home Page."/>
+</form>
+
+<table class="table table-striped">
+    <thead class="thead-dark">
+    <tr>
+        <th>Province/State</th>
+        <th>Country/Region</th>
+        <th>Last Updated</th>
+        <th>Confirmed</th>
+        <th>Deaths</th>
+        <th>Recovered</th>
+    </tr>
+    </thead>
+    <tr th:each="locationWiseStat : ${dateWiseList}">
+        <td th:text="${locationWiseStat.province}"></td>
+        <td th:text="${locationWiseStat.country}"></td>
+        <td th:text="${locationWiseStat.lastUpdated}"></td>
+        <td th:text="${locationWiseStat.confirmed}"></td>
+        <td th:text="${locationWiseStat.deaths}"></td>
+        <td th:text="${locationWiseStat.recovered}"></td>
+    </tr>
+</table>
+
+</body>
+</html>

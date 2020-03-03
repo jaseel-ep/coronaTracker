@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Corona Virus Tracker</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../../css/gtvg.css" th:href="@{/css/gtvg.css}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+<h1>Welcome to Corona Virus Tracker</h1>
+
+<div class="jumbotron">
+    <p class="lead">Total number of cases reported</p>
+    <h1 class="display-4" th:text="${totalConfirmedCase}"></h1>
+    <hr class="my-4">
+</div>
+
+<form action="#" th:action="@{/dateWise}" th:object="${day}" method="post">
+
+    <div class="alert alert-primary" role="alert">
+        <p>
+            <mark> Search by Date</mark>
+        </p>
+        <p>Choose a day: <input type="date" th:field="*{day}"/></p>
+    </div>
+    <p><input type="submit" class="btn btn-success" value="Submit"/> <input type="reset" class="btn btn-warning" value="Reset"/></p>
+</form>
+
+
+<table class="table table-striped">
+    <thead class="thead-dark">
+    <tr>
+        <th>Province/State</th>
+        <th>Country/Region</th>
+        <th>Number of Conformed Cases</th>
+    </tr>
+    </thead>
+    <tr th:each="locationWiseStat : ${locationStatus}">
+        <td th:text="${locationWiseStat.province}"></td>
+        <td th:text="${locationWiseStat.country}"></td>
+        <td th:text="${locationWiseStat.latestConfirmedStat}"></td>
+    </tr>
+</table>
+
+
+</body>
+
+</html>
